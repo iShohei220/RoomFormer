@@ -60,32 +60,29 @@ We address 2D floorplan reconstruction from 3D scans. Existing approaches typica
 
 
 ## Preparation
-### Environment
-* The code has been tested on Linux with python 3.8, torch 1.9.0, and cuda 11.1.
-* We recommend an installation through conda:
-  * Create an environment:
-  ```shell
-  conda create -n roomformer python=3.8
-  conda activate roomformer
-  ```
-  * Install pytorch and other required packages:
-  ```shell
-  # adjust the cuda version accordingly
-  pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
-  pip install -r requirements.txt
-  ```
-  * Compile the deformable-attention modules (from [deformable-DETR](https://github.com/fundamentalvision/Deformable-DETR)) and the differentiable rasterization module (from [BoundaryFormer](https://github.com/mlpc-ucsd/BoundaryFormer)):
-  ```shell
-  cd models/ops
-  sh make.sh
+### Docker
+* Build a docker image.
+```shell
+cd docker
+docker build -t roomformer .
+```
 
-  # unit test for deformable-attention modules (should see all checking is True)
-  # python test.py
+* Run a docker container
+```shell
+docker run -it --rm --gpus all -v /path/to/repository:/workspace/RoomFormer roomformer
+```
 
-  cd ../../diff_ras
-  python setup.py build develop
-  ```
+* Compile the deformable-attention modules (from [deformable-DETR](https://github.com/fundamentalvision/Deformable-DETR)) and the differentiable rasterization module (from [BoundaryFormer](https://github.com/mlpc-ucsd/BoundaryFormer)):
+```shell
+cd models/ops
+sh make.sh
 
+# unit test for deformable-attention modules (should see all checking is True)
+# python test.py
+
+cd ../../diff_ras
+python setup.py build develop
+```
 
 ### Data
 

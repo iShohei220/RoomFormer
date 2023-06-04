@@ -2,7 +2,7 @@ opencv-python
 numpy==1.19.0
 matplotlib==3.6.2
 imageio==2.19.3
-wandb==0.12.19
+wandb==0.9.7
 scipy==1.8.1
 fvcore
 cloudpickle==2.1.0
