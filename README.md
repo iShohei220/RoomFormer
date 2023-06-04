@@ -69,7 +69,7 @@ docker build -t roomformer .
 
 * Run a docker container
 ```shell
-docker run -it --rm --gpus all -v /path/to/repository:/workspace/RoomFormer roomformer
+docker run -it --rm --gpus all --ipc host -v /path/to/repository:/workspace/RoomFormer roomformer
 ```
 
 * Compile the deformable-attention modules (from [deformable-DETR](https://github.com/fundamentalvision/Deformable-DETR)) and the differentiable rasterization module (from [BoundaryFormer](https://github.com/mlpc-ucsd/BoundaryFormer)):
